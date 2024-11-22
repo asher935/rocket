@@ -7,7 +7,7 @@ export default function Sidebar() {
     const [expanded, setExpanded] = useState(false)
     return (
         <aside className={`h-screen transition-all`}>
-            <nav className="flex flex-col gap-2 h-full border-r shadow-sm items-center border-gray-700 dark:border-gray-50 border-opacity-25 justify-between w-full">
+            <nav className="flex flex-col gap-2 h-full border-r shadow-sm items-center border-gray-700 dark:border-gray-700 border-opacity-25 justify-between w-full">
                 <div className="h-full items-center flex flex-col gap-2 p-4 w-full">
                     <div className={`${expanded ? " w-full flex flex-col" : ''}`}>
                         <button onClick={() => setExpanded(curr => !curr)} className="hover:bg-black/[.05] hover:dark:bg-white/[.08] rounded-lg p-2 self-end text-lg">
@@ -18,14 +18,14 @@ export default function Sidebar() {
                         {expanded ? "New Chat" : <FaPlus />}
                     </button> */}
                     <SidebarContext.Provider value={expanded}>
-                        <SidebarItem icon={<BsFileEarmark />} text="Artefacts" active={false} />
+                        <SidebarItem icon={<BsFileEarmark />} text="Artifacts" active={false} />
                         <SidebarItem icon={<BsFolder2Open />} text="Projects" active={false} />
                         <SidebarItem icon={<BsChat />} text="Chats" active={false} />
                     </SidebarContext.Provider>
 
                 </div>
 
-                <div className="border-t border-opacity-25 border-gray-700 dark:border-gray-100 flex p-4">
+                <div className="border-t border-opacity-25 border-gray-700 dark:border-gray-700 flex p-4">
                     <img src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true" className="rounded-full w-10 h-10" />
                     <div className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-40 ml-3" : "w-0"}`}>
                         <div className="flex flex-col">

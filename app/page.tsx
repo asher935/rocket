@@ -1,36 +1,42 @@
+'use client'
+import { useState } from "react";
 import Image from "next/image";
 import Navbar from "./ui/navbar";
-
 import Sidebar from "./ui/sidebar";
 
-export default function Home() {
+import { BsArrowRight, BsPaperclip } from "react-icons/bs";
+
+export default function Home(this: any) {
+  const [prompt, setPrompt] = useState("");
   return (
     <div className="flex min-h-screen">
       <Sidebar />
       <div className="grid grid-rows-[20px_1fr_20px] w-full items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:pt-4 font-[family-name:var(--font-geist-sans)]">
         <Navbar />
-        <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          <>
 
-          </>
-          <Image
-            className="dark:invert"
-            src="/next.svg"
-            alt="Next.js logo"
-            width={180}
-            height={38}
-            priority
-          />
-          <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-            <li className="mb-2">
-              Get started by editing{" "}
-              <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-                app/page.tsx
-              </code>
-              .
-            </li>
-            <li>Save and see your changes instantly.</li>
-          </ol>
+        <main className="flex flex-col gap-8 row-start-2 items-center w-full px-96">
+          <h1 className="text-4xl font-semibold text-center">
+            What will you create today?
+          </h1>
+          <div className="w-full bg-black/[.05] dark:bg-white/[.06] p-4 rounded-lg">
+
+            <div className="w-full relative">
+              <div className="py-sm px-md overflow-y-hidden whitespace-pre-wrap break-words max-h-[164px] min-h-[44px] invisible leading-[24px]">
+                {prompt}
+              </div>
+              <textarea
+                placeholder="Ask me anything..."
+                className="absolute right-0 top-0 bottom-0 left-0 py-sm px-md resize-none leading-[24px] bg-transparent outline-none appearance-none"
+                value={prompt}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setPrompt(e.target.value)}
+              />
+            </div>
+
+            <div className="flex justify-between items-center text-2xl">
+              <button title="Upload a file" className="items-center dark:bg-white/[.05] hover:bg-black/[.05] hover:dark:bg-white/[.1] border border-opacity-25 border-black/[0.2] dark:border-white/[0.2] rounded p-1 text-md"><BsPaperclip /></button>
+              <button title="Submit" disabled={prompt == ""} className="items-center text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-600 hover:dark:bg-blue-500 p-1 rounded disabled:text-black/[0.5] disabled:dark:text-white/[0.5] disabled:bg-transparent disabled:hover:bg-transparent"><BsArrowRight /></button>
+            </div>
+          </div>
 
           <div className="flex gap-4 items-center flex-col sm:flex-row">
             <a
