@@ -6,13 +6,13 @@ const SidebarContext = createContext(false)
 export default function Sidebar() {
     const [expanded, setExpanded] = useState(false)
     return (
-        <aside className={`h-screen transition-all`}>
-            <nav className="flex flex-col gap-2 h-full border-r shadow-sm items-center border-gray-700 dark:border-gray-700 border-opacity-25 justify-between w-full">
+        <aside className={`h-screen transition-all`} onMouseEnter={() => setExpanded(true)} onMouseLeave={() => setExpanded(false)}>
+            <nav className="flex flex-col gap-2 h-full border-r shadow-sm items-center border-black/[.08] dark:border-white/[.145] border-opacity-25 justify-between w-full">
                 <div className="h-full items-center flex flex-col gap-2 p-4 w-full">
                     <div className={`${expanded ? " w-full flex flex-col" : ''}`}>
-                        <button onClick={() => setExpanded(curr => !curr)} className="hover:bg-black/[.05] hover:dark:bg-white/[.08] rounded-lg p-2 self-end text-lg">
+                        {/* <button onClick={() => setExpanded(curr => !curr)} className="hover:bg-black/[.05] hover:dark:bg-white/[.08] rounded-lg p-2 self-end text-lg">
                             {expanded ? <BsChevronLeft /> : <BsChevronRight />}
-                        </button>
+                        </button> */}
                     </div>
                     {/* <button className="dark:bg-white/[.05] hover:bg-black/[.05] hover:dark:bg-white/[.08] border border-opacity-25 border-gray-100 rounded p-1 text-md transition-all duration-300 ease-in-out">
                         {expanded ? "New Chat" : <FaPlus />}
@@ -25,7 +25,7 @@ export default function Sidebar() {
 
                 </div>
 
-                <div className="border-t border-opacity-25 border-gray-700 dark:border-gray-700 flex p-4">
+                <div className="border-t border-black/[.08] dark:border-white/[.145] flex p-4">
                     <img src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true" className="rounded-full w-10 h-10" />
                     <div className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-40 ml-3" : "w-0"}`}>
                         <div className="flex flex-col">
@@ -49,7 +49,7 @@ export function SidebarItem({ icon, text, active }: { icon: React.ReactNode, tex
         ${active ? "bg-black/[.05]" : "hover:bg-black/[.05] hover:dark:bg-white/[.08]"} `} >
             {icon}
             <span className={`overflow-hidden transition-all text-base ${expanded ? "w-40 ml-4" : "w-0"}`}>{text}</span>
-            {!expanded && 
+            {!expanded &&
                 <span className="absolute left-full ml-8 p-2 text-base bg-black/[.05] dark:bg-white/[.08] rounded-md invisible group-hover:visible ">{text}</span>
             }
         </li>
